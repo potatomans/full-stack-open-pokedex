@@ -9,7 +9,7 @@ app.use(express.json())
 /* eslint-disable */
 
 app.get('/health', (_req, res) => {
-  res.send('testing practice branch')
+  res.send('hello world')
 })
 
 app.use(express.static('dist'))
