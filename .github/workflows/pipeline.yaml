@@ -44,5 +44,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: 'patch'
-        if: ${{ contains(COMMIT_MESSAGES, '#skip') == false }}
+        if: ${{ contains($"COMMIT_MESSAGES", '#skip') == false }}
             
