@@ -47,7 +47,7 @@ jobs:
         with:
             severity: info
             username: BuildUpdate
-            description: link here ${{ toJson(github.event.commits.*.url) }}
+            description: link here ${{ join(toJson(github.event.commits.*.url), ' ') }}
             text: a new version of pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
@@ -55,5 +55,7 @@ jobs:
         if: failure()
         with:
             severity: error
+            username: BuildUpdate
             text: build failed! see commit url below
+            description: link here ${{ join(toJson(github.event.commits.*.url), ' ') }}
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
