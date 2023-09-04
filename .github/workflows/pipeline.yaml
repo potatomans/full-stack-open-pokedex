@@ -16,6 +16,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message), ' ') }}
+        run: echo "$COMMIT_MESSAGES"
       - name: Install dependencies
         run: npm install
       - name: Check style
@@ -40,4 +44,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: 'patch'
+        if: ${{ contains(COMMIT_MESSAGES, '#skip') == false }}
             
